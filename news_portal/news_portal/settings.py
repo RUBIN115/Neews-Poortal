@@ -41,8 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.flatpages',
-
-    'news',
+    'django_apscheduler',
+    
+    'news.apps.NewsConfig',
     'django_filters',
 
     'allauth',
@@ -56,10 +57,13 @@ INSTALLED_APPS = [
     'protect',
 ]
 
-DEFAULT_FROM_EMAIL = ''  # здесь указываем уже свою ПОЛНУЮ почту,
+DEFAULT_FROM_EMAIL = 'ilhaosinkin@yandex.ru'  # здесь указываем уже свою ПОЛНУЮ почту,
 # с которой будут отправляться письма
 
 SITE_ID = 1
+
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+APSCHEDULER_RUN_NOW_TIMEOUT = 25
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -178,3 +182,5 @@ ADMINS = [
 ]
 SERVER_EMAIL = 'ilhaosinkin@yandex.ru'  # это будет у нас вместо
 # аргумента FROM в массовой рассылке
+
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
