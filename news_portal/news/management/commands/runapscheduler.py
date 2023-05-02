@@ -10,6 +10,7 @@ from django_apscheduler.models import DjangoJobExecution
 
 import zoneinfo
 from datetime import datetime
+# import pytz
 
 from django.conf import settings
 from news.models import Post, Category
@@ -18,8 +19,10 @@ from django.core.mail import EmailMultiAlternatives
 
 logger = logging.getLogger(__name__)
 
-NYC = zoneinfo.ZoneInfo("Russia/Magadan")
-datetime(2023, 1, 1, tzinfo=NYC)
+# tz = pytz.timezone('Russia/Magadan')
+
+magadan_tz = zoneinfo.ZoneInfo("Asia/Shanghai")
+datetime(2023, 1, 1, tzinfo=magadan_tz)
 
 # наша задача по выводу текста на экран
 def my_job():
