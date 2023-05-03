@@ -29,6 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
+SITE_URL = '127.0.0.1:8000/'
 
 # Application definition
 
@@ -184,4 +185,5 @@ SERVER_EMAIL = 'ilhaosinkin@yandex.ru'  # это будет у нас вмест
 # аргумента FROM в массовой рассылке
 
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
+
 
