@@ -25,7 +25,7 @@ def send_notifications(preview, pk, title, subscribers):
     )
     msg.attach_alternative(html_content, "text/html")
 
-    msg.send(fail_silently=False)
+    msg.send()
 
 @receiver(m2m_changed, sender=PostCategory)
 def notify_about_new_post(sender, instance, **kwargs):
