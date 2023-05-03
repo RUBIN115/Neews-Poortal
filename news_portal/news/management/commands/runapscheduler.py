@@ -46,8 +46,8 @@ def my_job():
     )
     msg.attach_alternative(html_content, "text/html")
 
-    msg.send()
-    print('я работаю')
+    msg.send(fail_silently=False)
+    print('Здравствуйте, ментор)))')
 
 # функция, которая будет удалять неактуальные задачи
 def delete_old_job_executions(max_age=604_800):
@@ -65,7 +65,7 @@ class Command(BaseCommand):
         # добавляем работу нашему задачнику
         scheduler.add_job(
             my_job,
-            trigger=CronTrigger(day_of_week="wed", hour="21", minute="34"),
+            trigger=CronTrigger(day_of_week="wed", hour="23", minute="24"),
             # То же, что и интервал, но задача тригера таким образом более понятна django
             id="my_job",  # уникальный айди
             max_instances=1,
