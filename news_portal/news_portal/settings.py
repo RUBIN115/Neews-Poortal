@@ -182,7 +182,7 @@ ADMINS = [
     # список всех админов в формате ('имя', 'их почта')
 ]
 SERVER_EMAIL = 'ilhaosinkin@yandex.ru'  # это будет у нас вместо
-# аргумента FROM в массовой рассылке
+# аргумента FROM в массовой рассылк
 
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
 
