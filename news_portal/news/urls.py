@@ -3,6 +3,8 @@ from .views import (
    NewsList, NewDetail, SearchNewsList, AddNew, UpdateNew, DeleteNew,
    CategoryList, CategoryDetail, subscribe, unsubscribe
 )
+# from .views import IndexView
+
 
 urlpatterns = [
    path('', NewsList.as_view(),
@@ -25,4 +27,5 @@ name='one_category'),
 name='subscribe'),
    path('categories/<int:pk>/unsubscribe/', unsubscribe,
 name='unsubscribe'),
+   # path('', IndexView.as_view()),
 ]

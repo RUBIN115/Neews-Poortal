@@ -7,7 +7,10 @@ from .forms import NewForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
-from django.http import HttpResponseRedirect
+# from django.http import HttpResponseRedirect, HttpResponse
+# from django.views import View
+# from .tasks import send_email_news, weekly_notification
+from datetime import datetime, timedelta
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render
@@ -95,3 +98,13 @@ def unsubscribe(request, pk):
     category = Category.objects.get(pk=pk)
     category.subscribers.remove(request.user.id)
     return HttpResponseRedirect(reverse('categories'))
+
+
+# class IndexView(View):
+#     def get(self, request):
+#         printer.apply_async([10], eta = datetime.now() +
+#                                         timedelta(seconds=5))
+#         hello.delay()
+#         return HttpResponse('Hello!')
+
+

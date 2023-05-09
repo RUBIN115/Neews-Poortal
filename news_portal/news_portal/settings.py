@@ -185,9 +185,9 @@ SERVER_EMAIL = 'ilhaosinkin@yandex.ru'  # это будет у нас вмест
 # аргумента FROM в массовой рассылк
 
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
-
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+#redis://логин:пароль@endpoint:port
+CELERY_BROKER_URL = 'redis://:e545c1qZwnEeK4nstTFhR1hmOhnfICvj@redis-14442.c1.asia-northeast1-1.gce.cloud.redislabs.com:14442'
+CELERY_RESULT_BACKEND = 'redis://:e545c1qZwnEeK4nstTFhR1hmOhnfICvj@redis-14442.c1.asia-northeast1-1.gce.cloud.redislabs.com:14442'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
