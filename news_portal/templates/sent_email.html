@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
+{% load cache %} <!-- Загружаем кэширование -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Документ</title>
 </head>
 <body>
+{% cache 20 header %}
     <p>«Здравствуй, {{username}}. Новая <a href="{{ link }}">статья</a> в твоём любимом разделе!»</p>
     <p> {{ post.text_author|truncatechars:50 }}!</p>
+{% endcache %}
+
 </body>
 </html>

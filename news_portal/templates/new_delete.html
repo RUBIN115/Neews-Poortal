@@ -2,9 +2,12 @@
 
 {% load custom_filters %}
 
+{% load cache %} <!-- Загружаем кэширование -->
+
 {% block title %}
     Удаление новости
 {% endblock title %}
+{% cache 20 header %}
 
 {% block content %}
     <h2>Вы действительно хотите удалить данную новость?</h2>
@@ -25,3 +28,4 @@
         <input type="submit" value="Подтвердить">
     </form>
 {% endblock content %}
+{% endcache %}

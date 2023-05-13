@@ -4,9 +4,12 @@
 
 {% load custom_filters %}
 
+{% load cache %} <!-- Загружаем кэширование -->
+
 {% block title %}
     Поиск новостей
 {% endblock title %}
+{% cache 20 header %}
 
 {% block content %}
 <h1>Поиск новостей</h1>
@@ -36,3 +39,4 @@
         <h2>Новостей нет!</h2>
     {% endif %}
 {% endblock content %}
+{% endcache %}

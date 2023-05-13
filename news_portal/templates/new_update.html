@@ -1,9 +1,12 @@
 {% extends 'flatpages/default.html' %}
 
+{% load cache %} <!-- Загружаем кэширование -->
+
 {% block title %}
     Обновление новости
 {% endblock title %}
 
+{% cache 20 header %}
 
 {% block content %}
     <h3>Информация о новости</h3>
@@ -13,3 +16,4 @@
         <input type="submit" value="Редактировать новость">
     </form>
 {% endblock content %}
+{% endcache %}

@@ -2,10 +2,13 @@
 
 {% load custom_filters %}
 
+{% load cache %} <!-- Загружаем кэширование -->
+
 {% block title %}
     Новость
 {% endblock title %}
 
+{% cache 20 header %}
 {% block content %}
     <table>
         <tr>
@@ -20,3 +23,4 @@
         </tr>
     </table>
 {% endblock content %}
+{% endcache %}

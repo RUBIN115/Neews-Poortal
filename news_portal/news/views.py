@@ -14,6 +14,9 @@ from datetime import datetime, timedelta
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render
+from django.views.decorators.cache import cache_page
+
+from django.core.cache import cache
 
 class NewsList(ListView):
     # model = Post
@@ -28,6 +31,15 @@ class NewDetail(DetailView):
     template_name = 'new.html'
     context_object_name = 'new'
     form_class = NewForm
+
+    def get_object(self, *args, **kwargs):
+        obj = cache.get(f'news-{self.kwargs["pk"]}', None)
+
+        if not obj:
+            obj = super().get_object(queryset=self.queryset)
+            cache.set(f'news-{self.kwargs["pk"]}', obj)
+
+        return obj
 
 
 class SearchNewsList(ListView):
@@ -107,4 +119,8 @@ def unsubscribe(request, pk):
 #         hello.delay()
 #         return HttpResponse('Hello!')
 
+
+# @cache_page(60*15)
+# def my_view(request):
+#     ...
 

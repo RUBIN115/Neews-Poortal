@@ -6,10 +6,13 @@
 
 {% load custom_tags %}
 
+{% load cache %} <!-- Загружаем кэширование -->
+
 <!-- Название у нас будет products -->
 {% block title %}
     Новости
 {% endblock title %}
+{% cache 20 header %}
 
 <!-- В контенте на странице мы выводим все товары -->
 {% block content %}
@@ -66,3 +69,4 @@
     {% endif %}
 {% endif %}
 {% endblock content %}
+{% endcache %}

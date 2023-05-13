@@ -4,12 +4,13 @@ from .views import (
    CategoryList, CategoryDetail, subscribe, unsubscribe
 )
 # from .views import IndexView
+from django.views.decorators.cache import cache_page
 
 
 urlpatterns = [
-   path('', NewsList.as_view(),
+   path('', cache_page(60*1)(NewsList.as_view()),
 name='news'),
-   path('<int:pk>', NewDetail.as_view(),
+   path('<int:pk>', cache_page(60*5)(NewDetail.as_view()),
 name='new'),
    path('search/', SearchNewsList.as_view(),
 name='news_search'),
