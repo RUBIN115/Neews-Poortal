@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
+from django.core.validators import MinValueValidator
+
 
 from django.core.cache import cache
 
@@ -8,6 +10,11 @@ from django.core.cache import cache
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     author_rating = models.IntegerField(default=1)
+    quantity = models.IntegerField(validators=[MinValueValidator(0, 'Quantity should be >= 0')])
+
+    @property
+    def on_stock(self):
+        return self.quantity > 0
 
     def __str__(self):
         return f'{self.user}'
@@ -29,6 +36,11 @@ class Author(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
     subscribers = models.ManyToManyField(User, related_name='categories')
+    quantity = models.IntegerField(validators=[MinValueValidator(0, 'Quantity should be >= 0')])
+
+    @property
+    def on_stock(self):
+        return self.quantity > 0
 
     def __str__(self):
         return f'{self.name}'
@@ -45,6 +57,11 @@ class Post(models.Model):
     title = models.TextField(max_length=255)
     post_text = models.TextField(max_length=20000)
     post_rating = models.IntegerField(default=1)
+    quantity = models.IntegerField(validators=[MinValueValidator(0, 'Quantity should be >= 0')])
+
+    @property
+    def on_stock(self):
+        return self.quantity > 0
 
     def __str__(self):
         return f'{self.author}, {self.title}'
@@ -72,6 +89,7 @@ class Post(models.Model):
         super().save(*args, **kwargs)
         cache.delete(f'news-{self.pk}')
 
+
 class PostCategory(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -86,6 +104,11 @@ class Comment(models.Model):
     comment_text = models.TextField(max_length=255)
     date_time_create = models.DateTimeField(auto_now_add=True)
     comment_rating = models.IntegerField(default=1)
+    quantity = models.IntegerField(validators=[MinValueValidator(0, 'Quantity should be >= 0')])
+
+    @property
+    def on_stock(self):
+        return self.quantity > 0
 
     def __str__(self):
         return f'{self.user}, {self.post}, {self.comment_text}'
