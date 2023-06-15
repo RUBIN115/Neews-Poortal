@@ -18,6 +18,8 @@ from django.views.decorators.cache import cache_page
 
 from django.core.cache import cache
 
+from django.utils.translation import gettext as _ # импортируем функцию для перевода
+
 class NewsList(ListView):
     # model = Post
     queryset = Post.objects.filter(type=0)
@@ -123,4 +125,10 @@ def unsubscribe(request, pk):
 # @cache_page(60*15)
 # def my_view(request):
 #     ...
+
+class Index(View):
+    def get(self, request):
+        string = _('Hello world')
+
+        return HttpResponse(string)
 
