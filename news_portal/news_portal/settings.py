@@ -58,6 +58,7 @@ INSTALLED_APPS = [
 
     'sign',
     'protect',
+    'rest_framework',
 ]
 
 DEFAULT_FROM_EMAIL = 'ilhaosinkin@yandex.ru'  # здесь указываем уже свою ПОЛНУЮ почту,
